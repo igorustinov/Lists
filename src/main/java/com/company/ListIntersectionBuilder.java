@@ -14,7 +14,7 @@ public class ListIntersectionBuilder {
     private int sizeOne;
     private int sizeTwo;
     private ListToUseForHashSet listToUseForHashset;
-    private NumberGenerator numberGenerator = new NumberGenerator();
+    private RandomNumberGenerator numberGenerator = new RandomNumberGenerator();
 
     public ListIntersectionBuilder sizeOne(int sizeOne) {
         this.sizeOne = sizeOne;
@@ -57,11 +57,11 @@ public class ListIntersectionBuilder {
         return new Random().longs(size).boxed().collect(Collectors.toList());
     }
 
-    enum ListToUseForHashSet {
+    public enum ListToUseForHashSet {
         FIRST, SECOND, DEFAULT
     }
 
-    public void setNumberGenerator(NumberGenerator numberGenerator) {
+    public void setNumberGenerator(RandomNumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
 }

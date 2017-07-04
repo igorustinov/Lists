@@ -19,7 +19,7 @@ public class CommandHandler {
     // -l output full list
     // -h, -help usage
     public void handle(String[] args, PrintStream printStream) {
-        Instant start = Instant.now();
+
         try {
             ListIntersectionBuilder bldr = new ListIntersectionBuilder();
             for (int i = 0; i < args.length; i++) {
@@ -61,6 +61,7 @@ public class CommandHandler {
                 }
             }
             final ListIntersection<Long> intersection = bldr.build();
+            Instant start = Instant.now();
             int counter = 0;
             for (Long aLong : intersection) {
                 if (showList) {
@@ -77,9 +78,10 @@ public class CommandHandler {
             }
 
             Instant finish = Instant.now();
-            printStream.println("Completed: " + Duration.between(start, finish));
+            final Duration between = Duration.between(start, finish);
+            printStream.println("Completed: " + between);
         } catch (IllegalArgumentException e) {
-            printStream.println("Error parsing command. use with -h or -help to see usage");
+            printStream.println("Error parsing command. use with    -h or -help to see usage");
         }
     }
 
